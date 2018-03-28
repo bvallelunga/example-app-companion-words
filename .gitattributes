@@ -1,0 +1,2 @@
+app/glove.twitter.27B.25d.word2vec.p filter=lfs diff=lfs merge=lfs -text
+app/glove.twitter.27B.25d.word2vec.p.vectors.npy filter=lfs diff=lfs merge=lfs -text
