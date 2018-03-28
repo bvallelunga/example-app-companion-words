@@ -5,23 +5,23 @@ from setuptools import setup
 
 
 def read(fname):
-  return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
 a = setup(
-  name = "glove",
-  version = "0.0.1",
-  description = "Vector representations for words extracted from tweets.",
-  license = "MIT License",
-  long_description=read('README.md'),
-  keywords = "glove embeddings word vectors stanford",
-  url = "https://github.com/DopplerFoundation/example-app-glove",
-  packages = ['app'],
-  install_requires = [
-    "gensim"
-  ],
-  classifiers = [
-    "Topic :: Utilities",
-    "License :: MIT License"
-  ]
+    name="similar-words",
+    version="0.0.1",
+    description="Find similar words.",
+    license="Apache License",
+    long_description=read('README.md'),
+    keywords="similarity similar words nlp",
+    url="https://github.com/DopplerFoundation/example-app-similar-words",
+    packages=['app'],
+    install_requires=[
+        "gensim"
+    ],
+    classifiers=[
+        "Topic :: Utilities",
+        "License :: Apache License"
+    ]
 )

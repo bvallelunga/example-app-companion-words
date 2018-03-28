@@ -17,12 +17,10 @@ class ModelInterface(object):
         if not self.is_list_of_strs(input['words']):
             raise ValueError("'words' should be a list of strings.")
 
-        vectors = []
+        similar_words = {}
         for word in [word.lower() for word in input['words']]:
             if word in self.vectors:
-                vectors.append(self.vectors[word].tolist())
-            else:
-                vectors.append(None)
-        return {'vectors': vectors}
+                similar_words[word] = [similar_word for similar_word, _ in self.vectors.most_similar(word)]
+        return {'similar_words': similar_words}
 
 
