@@ -4,7 +4,7 @@ This app uses word vectors, obtained from a pretrained GloVe model, to find simi
 
 ## Preprocessing
 To create the binary files used in this app, the word vectors were converted to the word2vec format and then pickled.
-```
+```python
 from gensim.scripts.glove2word2vec import glove2word2vec
 from gensim.models import KeyedVectors
 
