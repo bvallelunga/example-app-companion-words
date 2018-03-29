@@ -1,8 +1,17 @@
 {
-  "name": "similar-web",
+  "name": "Similar Words",
+  "slug": "similar-words",
   "keywords": "similarity similar words nlp",
   "description": "Find similar words.",
   "main": "app/main.py",
+  "website": "https://modeldepot.io/nisikk42/glove-on-tweets/overview",
+  "repository": "https://github.com/DopplerFoundation/example-app-similar-words",
+  "input_scheme": {
+    "words": "object"
+  },
+  "output_scheme": {
+    "similar_words": "object"
+  },
   "license": "Apache License",
   "dependencies": [
     "gensim"
