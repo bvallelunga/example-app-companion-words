@@ -1,5 +1,6 @@
 # Similar Words
-`similar-words` is a machine learning app that will tell you which words are most similar to each other. 
+Discover which words are most similar to each other. Trained on billions of tweets
+with over 1 million unique words.
 
 **Possible Use Cases**
   * discover the name for your next iPhone app
