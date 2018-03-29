@@ -1,0 +1,10 @@
+{
+  "name": "similar-web",
+  "keywords": "similarity similar words nlp",
+  "description": "Find similar words.",
+  "main": "app/main.py",
+  "license": "Apache License",
+  "dependencies": [
+    "gensim"
+  ]
+}
