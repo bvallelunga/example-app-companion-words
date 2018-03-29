@@ -2,7 +2,7 @@
   "name": "Similar Words",
   "slug": "similar-words",
   "keywords": "similarity similar words nlp",
-  "description": "Find similar words.",
+  "description": "Discover which words are most similar to each other. Trained on billions of tweets with over 1 million unique words.",
   "main": "app/main.py",
   "website": "https://modeldepot.io/nisikk42/glove-on-tweets/overview",
   "repository": "https://github.com/DopplerFoundation/example-app-similar-words",
