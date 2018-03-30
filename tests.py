@@ -2,6 +2,8 @@ import unittest
 
 from gensim.models import KeyedVectors
 
+from app.main import MAX_LIMIT
+from app.main import MIN_LIMIT
 from app.main import ModelInterface
 
 GLOVE_PATH = 'app/glove.twitter.27B.25d.word2vec.p'
@@ -20,12 +22,12 @@ class TestModelInterface(unittest.TestCase):
 
     def test_token_not_in_vocab(self):
         word = 'hdja'
-        similar_words = INTERFACE.prediction({'words': [word]})['similar_words']
+        similar_words = INTERFACE.prediction({'words': [word]})['words']
         self.assertFalse(word in similar_words)
 
     def test_valid_input(self):
         words = ['cat', 'dog']
-        actual = INTERFACE.prediction({'words': words})['similar_words']
+        actual = INTERFACE.prediction({'words': words})['words']
         expected = {word: [{'label': similar_word, 'score': round(score, ndigits=2)}
                            for similar_word, score in VECTORS.most_similar(word)] for word in words}
         self.assertEqual(actual, expected)
@@ -36,8 +38,8 @@ class TestModelInterface(unittest.TestCase):
         self.assertEqual(uncased, cased)
 
     def test_limit_exceeds_max(self):
-        with self.assertRaises(ValueError):
-            INTERFACE.prediction({'words': ['cat'], 'limit': 101})
+        words = INTERFACE.prediction({'words': ['cat'], 'limit': 101})['words']
+        self.assertEqual(len(words['cat']), MAX_LIMIT)
 
     def test_limit_not_int(self):
         with self.assertRaises(ValueError):
@@ -48,8 +50,8 @@ class TestModelInterface(unittest.TestCase):
             INTERFACE.prediction({'words': []})
 
     def test_limit_below_min(self):
-        with self.assertRaises(ValueError):
-            INTERFACE.prediction({'words': ['cat'], 'limit': 0})
+        words = INTERFACE.prediction({'words': ['cat'], 'limit': 0})['words']
+        self.assertEqual(len(words['cat']), MIN_LIMIT)
 
 
 if __name__ == '__main__':
