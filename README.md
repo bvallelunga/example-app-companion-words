@@ -9,8 +9,8 @@ with over 1 million unique words.
 
 
 ## Input Scheme
-The input should be an array of words. We can change the number of similar words to return, the default is 10, 
-by setting a limit. Note, the app is case-insensitive i.e. `cat` and `CAT` will have the same output.
+The input should contain an array of words and an integer limit (between 1-100). The limit specifies how many similar 
+words we want per input word. Note, the app is case-insensitive i.e. `cat` and `CAT` will have the same output.
 ```json
 {
   "words": ["blue", "twitter", "fkdsjfsa"],
