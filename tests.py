@@ -2,6 +2,7 @@ import unittest
 
 from gensim.models import KeyedVectors
 
+from app.main import DEFAULT_LIMIT
 from app.main import MAX_LIMIT
 from app.main import MIN_LIMIT
 from app.main import ModelInterface
@@ -17,9 +18,13 @@ class TestModelInterface(unittest.TestCase):
     def tearDown(self):
         self.interface = None
 
-    def test_missing_input_key(self):
+    def test_missing_words_key(self):
         with self.assertRaises(KeyError):
             self.interface.prediction({})
+
+    def test_missing_limit_key(self):
+        similar_words = self.interface.prediction({'words': ['cat']})['words']
+        self.assertEqual(len(similar_words['cat']), DEFAULT_LIMIT)
 
     def test_value_invalid_type(self):
         with self.assertRaises(ValueError):
