@@ -7,12 +7,12 @@ MIN_LIMIT = 1
 
 
 class ModelInterface(object):
-    def __init__(self):
-        self.vectors = KeyedVectors.load(GLOVE_PATH)  # very slow
+    def __init__(self, vectors=None):
+        self.vectors = KeyedVectors.load(GLOVE_PATH) if vectors is None else vectors  # very slow
 
     @staticmethod
     def is_list_of_strs(input):
-        return isinstance(input, list) and input and all(isinstance(el, str) for el in input)
+        return isinstance(input, list) and len(input) > 0 and all(isinstance(el, str) for el in input)
 
     def prediction(self, input):
         if 'words' not in input:
@@ -20,14 +20,13 @@ class ModelInterface(object):
         if not self.is_list_of_strs(input['words']):
             raise ValueError("'words' should be a list of strings.")
 
+        limit = DEFAULT_LIMIT
         if 'limit' in input:
             try:
                 limit = int(str(input['limit']))
                 limit = max(MIN_LIMIT, min(limit, MAX_LIMIT))
             except ValueError:
                 raise ValueError("'limit' must be an integer in the range 1-100.")
-        else:
-            limit = DEFAULT_LIMIT
 
         results = {}
         for word in [word.lower() for word in input['words']]:
