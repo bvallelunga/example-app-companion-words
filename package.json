@@ -10,7 +10,7 @@
     "words": "object"
   },
   "output_scheme": {
-    "similar_words": "object"
+    "words": "object"
   },
   "license": "Apache License",
   "dependencies": [

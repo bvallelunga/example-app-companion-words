@@ -2,37 +2,61 @@ import unittest
 
 from gensim.models import KeyedVectors
 
+from app.main import MAX_LIMIT
+from app.main import MIN_LIMIT
 from app.main import ModelInterface
 
 GLOVE_PATH = 'app/glove.twitter.27B.25d.word2vec.p'
 VECTORS = KeyedVectors.load(GLOVE_PATH)
-INTERFACE = ModelInterface()
 
 
 class TestModelInterface(unittest.TestCase):
+    def setUp(self):
+        self.interface = ModelInterface(VECTORS)
+
+    def tearDown(self):
+        self.interface = None
+
     def test_missing_input_key(self):
         with self.assertRaises(KeyError):
-            INTERFACE.prediction({})
+            self.interface.prediction({})
 
     def test_value_invalid_type(self):
         with self.assertRaises(ValueError):
-            INTERFACE.prediction({'words': set()})
+            self.interface.prediction({'words': set()})
 
     def test_token_not_in_vocab(self):
         word = 'hdja'
-        similar_words = INTERFACE.prediction({'words': [word]})['similar_words']
+        similar_words = self.interface.prediction({'words': [word]})['words']
         self.assertFalse(word in similar_words)
 
     def test_valid_input(self):
         words = ['cat', 'dog']
-        actual = INTERFACE.prediction({'words': words})['similar_words']
-        expected = {word: [similar_word for similar_word, _ in VECTORS.most_similar(word)] for word in words}
+        actual = self.interface.prediction({'words': words})['words']
+        expected = {word: [{'label': similar_word, 'score': round(score, ndigits=2)}
+                           for similar_word, score in VECTORS.most_similar(word)] for word in words}
         self.assertEqual(actual, expected)
 
     def test_case_insensitivity(self):
-        uncased = INTERFACE.prediction({'words': ['cat']})
-        cased = INTERFACE.prediction({'words': ['CAT']})
+        uncased = self.interface.prediction({'words': ['cat']})
+        cased = self.interface.prediction({'words': ['CAT']})
         self.assertEqual(uncased, cased)
+
+    def test_limit_exceeds_max(self):
+        words = self.interface.prediction({'words': ['cat'], 'limit': 101})['words']
+        self.assertEqual(len(words['cat']), MAX_LIMIT)
+
+    def test_limit_not_int(self):
+        with self.assertRaises(ValueError):
+            self.interface.prediction({'words': ['cat'], 'limit': 2.2})
+
+    def test_empty_list_of_words(self):
+        with self.assertRaises(ValueError):
+            self.interface.prediction({'words': []})
+
+    def test_limit_below_min(self):
+        words = self.interface.prediction({'words': ['cat'], 'limit': 0})['words']
+        self.assertEqual(len(words['cat']), MIN_LIMIT)
 
 
 if __name__ == '__main__':
