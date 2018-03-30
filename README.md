@@ -5,12 +5,12 @@ with over 1 million unique words.
 **Possible Use Cases**
   * discover the name for your next iPhone app
   * suggest relevant words in a messenger or email client
-  * serve relevant ads based on a user"s interests
+  * serve relevant ads based on a user's interests
 
 
 ## Input Scheme
 The input should be an array of words. We can change the number of similar words to return, the default is 10, 
-by setting a limit. Note, the app is case-insensitive i.e. `"cat"` and `"CAT"` will have the same output.
+by setting a limit. Note, the app is case-insensitive i.e. `cat` and `CAT` will have the same output.
 ```json
 {
   "words": ["blue", "twitter", "fkdsjfsa"],
@@ -19,7 +19,7 @@ by setting a limit. Note, the app is case-insensitive i.e. `"cat"` and `"CAT"` w
 ```
 
 ## Output Scheme
-The output will map each input word to an array of similar words. Notice how `"fkdsjfsa"` is missing in the output; 
+The output will map each input word to an array of similar words. Notice how `fkdsjfsa` is missing in the output; 
 input words which are not found in the app's vocabulary are skipped.
  
 ```json
