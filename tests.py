@@ -47,6 +47,10 @@ class TestModelInterface(unittest.TestCase):
         with self.assertRaises(ValueError):
             INTERFACE.prediction({'words': []})
 
+    def test_limit_below_min(self):
+        with self.assertRaises(ValueError):
+            INTERFACE.prediction({'words': ['cat'], 'limit': 0})
+
 
 if __name__ == '__main__':
     unittest.main()

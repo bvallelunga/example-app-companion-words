@@ -13,12 +13,16 @@ class ModelInterface(object):
     def is_list_of_strs(input):
         return isinstance(input, list) and input and all(isinstance(el, str) for el in input)
 
+    @staticmethod
+    def is_in_bounds(limit):
+        return limit <= MAX_LIMIT and limit > 0
+
     def prediction(self, input):
         if 'words' not in input:
             raise KeyError("No key named 'words' in input.")
         if not self.is_list_of_strs(input['words']):
             raise ValueError("'words' should be a list of strings.")
-        if 'limit' in input and (not isinstance(input['limit'], int) or input['limit'] > MAX_LIMIT):
+        if 'limit' in input and (not isinstance(input['limit'], int) or not self.is_in_bounds(input['limit'])):
                 raise ValueError("'limit' must be an integer in the range 1-100.")
 
         limit = input['limit'] if 'limit' in input else DEFAULT_LIMIT
