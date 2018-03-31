@@ -19,10 +19,10 @@ class ModelInterface(object):
             raise KeyError("Expected key named 'words' in input.")
         if not self.is_list_of_strs(input['words']):
             raise ValueError("'words' should be a list of strings.")
-        limit = max(MIN_LIMIT, min(input['limit'], MAX_LIMIT)) if 'limit' in input else DEFAULT_LIMIT
-        if not isinstance(limit, int):
+        if 'limit' in input and not isinstance(input['limit'], int):
             raise ValueError("'limit' must be an integer.")
 
+        limit = max(MIN_LIMIT, min(input['limit'], MAX_LIMIT)) if 'limit' in input else DEFAULT_LIMIT
         results = {}
         for word in [word.lower() for word in input['words']]:
             if word in self.vectors:

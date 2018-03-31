@@ -39,7 +39,11 @@ class TestModelInterface(unittest.TestCase):
         similar_words = self.interface.prediction({'words': ['cat']})['words']
         self.assertEqual(len(similar_words['cat']), DEFAULT_LIMIT)
 
-    def test_limit_not_int(self):
+    def test_limit_is_string(self):
+        with self.assertRaises(ValueError):
+            self.interface.prediction({'words': ['cat'], 'limit': '2.2'})
+
+    def test_limit_is_float(self):
         with self.assertRaises(ValueError):
             self.interface.prediction({'words': ['cat'], 'limit': 2.2})
 
