@@ -3,5 +3,4 @@ channels:
     - default
 dependencies:
     - python=3.6
-    - jupyter
     - gensim
