@@ -4,6 +4,7 @@ GLOVE_PATH = 'glove.twitter.27B.25d.word2vec.p'
 DEFAULT_LIMIT = 10
 MAX_LIMIT = 100
 MIN_LIMIT = 1
+MAX_WORD_COUNT = 50
 SCORE_PRECISION = 2
 
 
@@ -20,6 +21,8 @@ class ModelInterface(object):
             raise KeyError("Expected key named 'words' in input.")
         if not self.is_list_of_strs(input['words']):
             raise ValueError("'words' should be a list of strings.")
+        if len(input['words']) > MAX_WORD_COUNT:
+            raise ValueError("Number of words can not exceed {}.".format(MAX_WORD_COUNT))
         if 'limit' in input and not isinstance(input['limit'], int):
             raise ValueError("'limit' must be an integer.")
 

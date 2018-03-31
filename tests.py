@@ -4,6 +4,7 @@ from gensim.models import KeyedVectors
 
 from app.main import DEFAULT_LIMIT
 from app.main import MAX_LIMIT
+from app.main import MAX_WORD_COUNT
 from app.main import MIN_LIMIT
 from app.main import ModelInterface
 from app.main import SCORE_PRECISION
@@ -26,6 +27,10 @@ class TestModelInterface(unittest.TestCase):
     def test_empty_list_of_words(self):
         with self.assertRaises(ValueError):
             self.interface.prediction({'words': []})
+
+    def test_word_count_above_max(self):
+        with self.assertRaises(ValueError):
+            self.interface.prediction({'words': ['cat'] * (MAX_WORD_COUNT + 1)})
 
     def test_words_not_strings(self):
         with self.assertRaises(ValueError):
