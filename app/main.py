@@ -4,6 +4,7 @@ GLOVE_PATH = 'glove.twitter.27B.25d.word2vec.p'
 DEFAULT_LIMIT = 10
 MAX_LIMIT = 100
 MIN_LIMIT = 1
+SCORE_PRECISION = 2
 
 
 class ModelInterface(object):
@@ -26,7 +27,7 @@ class ModelInterface(object):
         results = {}
         for word in [word.lower() for word in input['words']]:
             if word in self.vectors:
-                results[word] = [{'label': similar_word, 'score': round(score, ndigits=2)}
+                results[word] = [{'label': similar_word, 'score': round(score, ndigits=SCORE_PRECISION)}
                                  for similar_word, score in self.vectors.most_similar(word, topn=limit)]
         return {'words': results}
 

@@ -6,6 +6,7 @@ from app.main import DEFAULT_LIMIT
 from app.main import MAX_LIMIT
 from app.main import MIN_LIMIT
 from app.main import ModelInterface
+from app.main import SCORE_PRECISION
 
 GLOVE_PATH = 'app/glove.twitter.27B.25d.word2vec.p'
 VECTORS = KeyedVectors.load(GLOVE_PATH)
@@ -48,17 +49,17 @@ class TestModelInterface(unittest.TestCase):
             self.interface.prediction({'words': ['cat'], 'limit': 2.2})
 
     def test_limit_above_max(self):
-        similar_words = self.interface.prediction({'words': ['cat'], 'limit': 101})['words']
+        similar_words = self.interface.prediction({'words': ['cat'], 'limit': MAX_LIMIT + 1})['words']
         self.assertEqual(len(similar_words['cat']), MAX_LIMIT)
 
     def test_limit_below_min(self):
-        similar_words = self.interface.prediction({'words': ['cat'], 'limit': 0})['words']
+        similar_words = self.interface.prediction({'words': ['cat'], 'limit': MIN_LIMIT - 1})['words']
         self.assertEqual(len(similar_words['cat']), MIN_LIMIT)
 
     def test_output_format(self):
         words = ['cat', 'dog']
         actual = self.interface.prediction({'words': words})['words']
-        expected = {word: [{'label': similar_word, 'score': round(score, ndigits=2)}
+        expected = {word: [{'label': similar_word, 'score': round(score, ndigits=SCORE_PRECISION)}
                            for similar_word, score in VECTORS.most_similar(word)] for word in words}
         self.assertEqual(actual, expected)
 
