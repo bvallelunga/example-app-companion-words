@@ -1,9 +1,11 @@
 from gensim.models import KeyedVectors
 
-GLOVE_PATH = 'app/glove.twitter.27B.25d.word2vec.p'
+GLOVE_PATH = 'glove.twitter.27B.25d.word2vec.p'
 DEFAULT_LIMIT = 10
 MAX_LIMIT = 100
 MIN_LIMIT = 1
+MAX_WORD_COUNT = 50
+SCORE_PRECISION = 2
 
 
 class ModelInterface(object):
@@ -16,22 +18,19 @@ class ModelInterface(object):
 
     def prediction(self, input):
         if 'words' not in input:
-            raise KeyError("No key named 'words' in input.")
+            raise KeyError("Expected key named 'words' in input.")
         if not self.is_list_of_strs(input['words']):
             raise ValueError("'words' should be a list of strings.")
+        if len(input['words']) > MAX_WORD_COUNT:
+            raise ValueError("Number of words can not exceed {}.".format(MAX_WORD_COUNT))
+        if 'limit' in input and not isinstance(input['limit'], int):
+            raise ValueError("'limit' must be an integer.")
 
-        limit = DEFAULT_LIMIT
-        if 'limit' in input:
-            try:
-                limit = int(str(input['limit']))
-                limit = max(MIN_LIMIT, min(limit, MAX_LIMIT))
-            except ValueError:
-                raise ValueError("'limit' must be an integer in the range 1-100.")
-
+        limit = max(MIN_LIMIT, min(input['limit'], MAX_LIMIT)) if 'limit' in input else DEFAULT_LIMIT
         results = {}
         for word in [word.lower() for word in input['words']]:
             if word in self.vectors:
-                results[word] = [{'label': similar_word, 'score': round(score, ndigits=2)}
+                results[word] = [{'label': similar_word, 'score': round(score, ndigits=SCORE_PRECISION)}
                                  for similar_word, score in self.vectors.most_similar(word, topn=limit)]
         return {'words': results}
 

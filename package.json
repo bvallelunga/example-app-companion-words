@@ -7,7 +7,8 @@
   "website": "https://modeldepot.io/nisikk42/glove-on-tweets/overview",
   "repository": "https://github.com/DopplerFoundation/example-app-similar-words",
   "input_scheme": {
-    "words": "object"
+    "words": "object",
+    "limit": "number"
   },
   "output_scheme": {
     "words": "object"
