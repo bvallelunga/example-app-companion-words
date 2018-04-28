@@ -50,4 +50,9 @@ The model was trained by [Stanford's NLP group][1] on a dataset of 2 billion, un
 (27 billion tokens with 1.2 million distinct words).
 
 
+## Want To Learn More?
+See the [MAINTAINERS.md][2] to learn more about the underlying model as well as how to contribute to the app.
+
+
 [1]: https://nlp.stanford.edu/projects/glove/
+[2]: https://github.com/DopplerFoundation/example-app-similar-words/blob/master/MAINTAINERS.md
