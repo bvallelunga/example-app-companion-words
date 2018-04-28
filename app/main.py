@@ -1,6 +1,7 @@
+import os
 from gensim.models import KeyedVectors
 
-GLOVE_PATH = 'glove.twitter.27B.25d.word2vec.p'
+GLOVE_PATH = '{}/glove.twitter.27B.25d.word2vec.p'.format(os.path.dirname(os.path.realpath(__file__)))
 DEFAULT_LIMIT = 10
 MAX_LIMIT = 100
 MIN_LIMIT = 1
