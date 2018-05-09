@@ -4,7 +4,6 @@
   "keywords": "similarity similar words nlp",
   "description": "Discover which words are most similar to each other. Trained on billions of tweets with over 1 million unique words.",
   "main": "app/main.py",
-  "website": "https://modeldepot.io/nisikk42/glove-on-tweets/overview",
   "repository": "https://github.com/DopplerFoundation/example-app-similar-words",
   "input_scheme": {
     "words": "object",
@@ -12,6 +11,28 @@
   },
   "output_scheme": {
     "words": "object"
+  },
+  "input_example": {
+    "words": ["blue", "twitter", "fkdsjfsa"],
+    "limit": 5
+  },
+  "output_example": {
+    "words": {
+      "blue": [
+        {"label": "yellow", "score": 0.96},
+        {"label": "red", "score": 0.95},
+        {"label": "green", "score": 0.95},
+        {"label": "purple", "score": 0.95},
+        {"label": "black", "score": 0.94}
+      ],
+      "twitter": [
+        {"label": "facebook", "score": 0.95},
+        {"label": "tweet", "score": 0.94},
+        {"label": "fb", "score": 0.93},
+        {"label": "instagram", "score": 0.91},
+        {"label": "chat", "score": 0.9}
+      ]
+    }
   },
   "license": "Apache License",
   "dependencies": [
