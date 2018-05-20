@@ -1,6 +1,0 @@
-name: similar-words
-channels:
-    - default
-dependencies:
-    - python=3.6
-    - gensim
