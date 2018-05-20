@@ -1,4 +1,4 @@
-# Conversation NLP
+# Companion Words
 Discover the words that are most frequently used in conversation with each other. Trained on billions of tweets
 with over 1 million unique words.
 
@@ -56,4 +56,4 @@ See the [MAINTAINERS.md][2] to learn more about the underlying model as well as 
 
 
 [1]: https://nlp.stanford.edu/projects/glove/
-[2]: https://github.com/DopplerFoundation/example-app-similar-words/blob/master/MAINTAINERS.md
+[2]: https://github.com/DopplerMarket/example-app-companion-words/blob/master/MAINTAINERS.md

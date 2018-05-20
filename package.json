@@ -1,10 +1,10 @@
 {
-  "name": "Conversational NLP",
-  "slug": "conversational-nlp",
+  "name": "Companion Words",
+  "slug": "companion-words",
   "keywords": "conversational nlp",
   "description": "Discover the words that are most frequently used in conversation with each other.",
   "main": "app/main.py",
-  "repository": "https://github.com/DopplerFoundation/example-app-conversational-nlp",
+  "repository": "https://github.com/DopplerMarket/example-app-companion-words",
   "input_scheme": {
     "words": "object",
     "limit": "number"
