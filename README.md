@@ -1,11 +1,12 @@
-# Similar Words
-Discover which words are most similar to each other. Trained on billions of tweets
+# Conversation NLP
+Discover the words that are most frequently used in conversation with each other. Trained on billions of tweets
 with over 1 million unique words.
 
-**Possible Use Cases**
-  * discover the name for your next iPhone app
-  * suggest relevant words in a messenger or email client
-  * serve relevant ads based on a user's interests
+## Use Cases
+  * Recommendation engine for related searches
+  * Discover the name for your next project
+  * Suggest relevant words in a messenger or email client
+  * Serve relevant ads based on a user's interests
 
 
 ## Input Scheme
