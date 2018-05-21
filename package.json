@@ -1,10 +1,10 @@
 {
-  "name": "Similar Words",
-  "slug": "similar-words",
-  "keywords": "similarity similar words nlp",
-  "description": "Discover which words are most similar to each other. Trained on billions of tweets with over 1 million unique words.",
+  "name": "Companion Words",
+  "slug": "companion-words",
+  "keywords": "conversational nlp",
+  "description": "Discover the words that are most frequently used in conversation with each other.",
   "main": "app/main.py",
-  "repository": "https://github.com/DopplerFoundation/example-app-similar-words",
+  "repository": "https://github.com/DopplerMarket/example-app-companion-words",
   "input_scheme": {
     "words": "object",
     "limit": "number"
@@ -34,8 +34,5 @@
       ]
     }
   },
-  "license": "Apache License",
-  "dependencies": [
-    "gensim"
-  ]
+  "license": "Apache License"
 }

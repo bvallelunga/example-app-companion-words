@@ -1,11 +1,12 @@
-# Similar Words
-Discover which words are most similar to each other. Trained on billions of tweets
+# Companion Words
+Discover the words that are most frequently used in conversation with each other. Trained on billions of tweets
 with over 1 million unique words.
 
-**Possible Use Cases**
-  * discover the name for your next iPhone app
-  * suggest relevant words in a messenger or email client
-  * serve relevant ads based on a user's interests
+## Use Cases
+  * Recommendation engine for related searches
+  * Discover the name for your next project
+  * Suggest relevant words in a messenger or email client
+  * Serve relevant ads based on a user's interests
 
 
 ## Input Scheme
@@ -19,7 +20,7 @@ words we want per input word. Note, the app is case-insensitive i.e. `cat` and `
 ```
 
 ## Output Scheme
-The output will map each input word to an array of similar words. Notice how `fkdsjfsa` is missing in the output; 
+The output will map each input word to an array of words with high relevance. Notice how `fkdsjfsa` is missing in the output; 
 input words which are not found in the app's vocabulary are skipped.
  
 ```json
@@ -55,4 +56,4 @@ See the [MAINTAINERS.md][2] to learn more about the underlying model as well as 
 
 
 [1]: https://nlp.stanford.edu/projects/glove/
-[2]: https://github.com/DopplerFoundation/example-app-similar-words/blob/master/MAINTAINERS.md
+[2]: https://github.com/DopplerMarket/example-app-companion-words/blob/master/MAINTAINERS.md
