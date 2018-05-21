@@ -20,7 +20,7 @@ words we want per input word. Note, the app is case-insensitive i.e. `cat` and `
 ```
 
 ## Output Scheme
-The output will map each input word to an array of words with high relation. Notice how `fkdsjfsa` is missing in the output; 
+The output will map each input word to an array of words with high relevance. Notice how `fkdsjfsa` is missing in the output; 
 input words which are not found in the app's vocabulary are skipped.
  
 ```json
