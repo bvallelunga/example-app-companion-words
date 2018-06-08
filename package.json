@@ -3,7 +3,6 @@
   "slug": "companion-words",
   "keywords": "companion words nlp",
   "description": "Discover the words that are most frequently used in conversation with each other.",
-  "main": "app/main.py",
   "repository": "https://github.com/DopplerMarket/example-app-companion-words",
   "input_scheme": {
     "words": "object",
